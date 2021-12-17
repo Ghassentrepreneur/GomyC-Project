@@ -1,0 +1,87 @@
+{
+	"name": "color-variable-replace",
+	"displayName": "color-variable-replace",
+	"description": "replace color with color variable",
+	"version": "2.0.0",
+	"publisher": "color-variable-replace",
+	"engines": {
+		"vscode": "^1.13.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onLanguage:Stylus",
+		"onLanguage:Less",
+		"onLanguage:Sass",
+		"onCommand:extension.colorReplace"
+	],
+	"main": "./out/src/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.colorReplace",
+				"title": "color replace"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "extension.colorReplace",
+				"key": "ctrl+shift+c",
+				"mac": "ctrl+shift+c",
+				"when": "editorTextFocus"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "colorReplace Configuration",
+			"properties": {
+				"colorReplace.variableFiles": {
+					"type": "array",
+					"default": [],
+					"description": "the paths of file which in defines color variables"
+				},
+				"colorReplace.prior": {
+					"type": "array",
+					"default": [],
+					"description": "the priority of variable names, support string and regular expression"
+				},
+				"colorReplace.unReplaceWarn": {
+					"type": "boolean",
+					"default": true,
+					"description": "give warning message when there is any color value that can't find corresponding variable name"
+				},
+				"colorReplace.insertType": {
+					"type": "string",
+					"default": "var",
+					"description": "when auto complete, use color value or variable name, value is 'var' or 'value'"
+				},
+				"colorReplace.onSave": {
+					"type": "boolean",
+					"default": false,
+					"description": "if auto replace when file save"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:publish": "vsce publish 1.0.5 --baseImagesUrl https://github.com/SimonTart/color-variable-replace/blob/master",
+		"vscode:prepublish": "tsc -p ./",
+		"compile": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.32",
+		"@types/node": "^6.0.79",
+		"mocha": "^2.3.3",
+		"typescript": "^2.0.3",
+		"vscode": "^1.0.0"
+	},
+	"__metadata": {
+		"id": "17560098-b257-40c4-b890-b62e7b415012",
+		"publisherId": "2ca556bd-5845-463e-9f5c-f4c93dd16d0b",
+		"publisherDisplayName": "color-variable-replace",
+		"installedTimestamp": 1637773642392
+	}
+}
